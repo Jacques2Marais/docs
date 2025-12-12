@@ -71,7 +71,24 @@ export const db = drizzle(client);
 
 ## Backups
 
-Databases are backed up automatically. Contact support to restore from a backup.
+Databases are backed up automatically every day at 2:00 AM. You can also trigger manual backups and restore from the dashboard.
+
+### Managing backups
+
+<Steps>
+  <Step title="Go to Databases">
+    Navigate to your project → **Databases** tab.
+  </Step>
+  <Step title="Click Manage backups">
+    On your database card, click **Manage backups**.
+  </Step>
+</Steps>
+
+From the backup modal you can:
+
+- **View backup schedule** — See when automatic backups run
+- **Trigger manual backup** — Click "Backup now" to create an immediate backup
+- **Restore from backup** — Select a backup file and click "Restore"
 
 <Warning>
   Restoring a backup replaces all current data. This cannot be undone.
