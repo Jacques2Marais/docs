@@ -1,0 +1,81 @@
+---
+title: "Environment variables"
+description: "Configure secrets and environment variables for your app"
+---
+
+## Overview
+
+Environment variables let you store configuration and secrets (like API keys) separately from your code.
+
+## Add environment variables
+
+<Steps>
+  <Step title="Go to your project">
+    Navigate to your project from the dashboard.
+  </Step>
+  <Step title="Open Settings">
+    Click the **Settings** tab in your project.
+  </Step>
+  <Step title="Add variable">
+    Scroll to **Environment Variables**, enter a **Key** and **Value**, then click **Add**.
+  </Step>
+  <Step title="Save">
+    Click **Save Changes** to apply. Your variables will be available on the next deployment.
+  </Step>
+</Steps>
+
+## Sensitive values
+
+Environment variable values are masked in the dashboard UI (shown as `••••••••`) for security.
+
+<Warning>
+  Never commit secrets to your repository. Use environment variables for API keys, passwords, and tokens.
+</Warning>
+
+## Accessing variables
+
+Environment variables are available as `process.env` in your code:
+
+```javascript
+// Node.js
+const apiKey = process.env.API_KEY;
+const dbUrl = process.env.DATABASE_URL;
+```
+
+```php
+// PHP
+$apiKey = getenv('API_KEY');
+```
+
+## Build vs runtime variables
+
+| When available | Use for |
+|----------------|---------|
+| **Build time** | API URLs, feature flags, public keys |
+| **Runtime** | Secrets, database URLs, private keys |
+
+<Tip>
+  In Next.js, prefix public variables with `NEXT_PUBLIC_` to expose them to the browser.
+</Tip>
+
+## Common variables
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | PostgreSQL connection string (auto-added) |
+| `NODE_ENV` | Set to `production` automatically |
+| `PORT` | Port your app should listen on |
+
+## Reserved variables
+
+These variables are set automatically and cannot be overridden:
+
+- `NODE_ENV` — Always `production`
+- `PORT` — Assigned dynamically
+
+## Best practices
+
+1. **Never commit secrets** — Use environment variables instead of `.env` files in production
+2. **Use environment variables for sensitive data** — API keys, passwords, tokens
+3. **Use descriptive names** — `STRIPE_SECRET_KEY` not `KEY1`
+4. **Rotate regularly** — Update secrets periodically for security

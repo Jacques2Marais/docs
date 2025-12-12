@@ -1,0 +1,96 @@
+---
+title: "Supported frameworks"
+description: "Frameworks and languages that work out of the box on Zanode"
+---
+
+## Overview
+
+Zanode auto-detects your framework and configures the optimal build settings. No configuration needed for most projects.
+
+## JavaScript / TypeScript
+
+<CardGroup cols={2}>
+
+<Card title="Next.js" icon="react">
+  Full-stack React with SSR, API routes, and static export.
+  
+  **Auto-detected by:** `next.config.js`
+</Card>
+
+<Card title="Nuxt" icon="vuejs">
+  Vue.js framework with SSR and static generation.
+  
+  **Auto-detected by:** `nuxt.config.ts`
+</Card>
+
+<Card title="Astro" icon="star">
+  Static site generator with island architecture.
+  
+  **Auto-detected by:** `astro.config.mjs`
+</Card>
+
+<Card title="SvelteKit" icon="s">
+  Svelte framework with SSR and adapters.
+  
+  **Auto-detected by:** `svelte.config.js`
+</Card>
+
+<Card title="React / Vite" icon="react">
+  Single-page applications.
+  
+  **Auto-detected by:** `vite.config.ts`
+</Card>
+
+<Card title="Node.js" icon="node-js">
+  Express, Fastify, Hono, and other Node servers.
+  
+  **Auto-detected by:** `package.json` with start script
+</Card>
+
+<Card title="Remix" icon="code">
+  React framework for web standards.
+  
+  **Auto-detected by:** `@remix-run/react` dependency
+</Card>
+
+</CardGroup>
+
+## WordPress
+
+WordPress is available as a **one-click project type** when creating a new project. It includes:
+
+- Managed MySQL database
+- Auto SSL
+- Daily backups
+- Isolated container
+
+<Note>
+  WordPress projects are created separately from GitHub-connected apps. Choose "WordPress" when creating a new project.
+</Note>
+
+## Docker
+
+Bring your own `Dockerfile` for full control:
+
+```dockerfile
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+CMD ["npm", "start"]
+```
+
+<Info>
+  When a `Dockerfile` is present, it takes priority over framework detection.
+</Info>
+
+## Build types
+
+| Build type | Use case |
+|------------|----------|
+| **Railpacks** | Default. Auto-detects framework, optimized builds. |
+| **Dockerfile** | Full control with your own container. |
+
+You can change the build type in **Project Settings → Build Configuration**.

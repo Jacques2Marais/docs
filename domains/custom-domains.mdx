@@ -1,0 +1,82 @@
+---
+title: "Custom domains"
+description: "Use your own domain for your Zanode app"
+---
+
+## Overview
+
+Every Zanode app gets a free `*.zano.click` subdomain. You can also add your own custom domain.
+
+## Add a custom domain
+
+<Steps>
+  <Step title="Go to Domains">
+    Navigate to your project → **Domains**.
+  </Step>
+  <Step title="Add domain">
+    Click **Add Domain** and enter your domain (e.g., `example.com`).
+  </Step>
+  <Step title="Configure DNS">
+    Add the DNS records shown in your domain registrar.
+  </Step>
+  <Step title="Verify">
+    Click **Verify** once DNS has propagated.
+  </Step>
+</Steps>
+
+## DNS configuration
+
+### For root domains (example.com)
+
+Add an **A record** pointing to the Zanode server:
+
+| Type | Name | Value |
+|------|------|-------|
+| A | @ | *(shown in dashboard)* |
+
+<Note>
+  The server IP address is displayed in your project's Domains page when you add a custom domain.
+</Note>
+
+### For subdomains (app.example.com)
+
+Add a **CNAME record**:
+
+| Type | Name | Value |
+|------|------|-------|
+| CNAME | app | `proxy.zanode.co.za` |
+
+## SSL certificates
+
+SSL certificates are provisioned automatically once your domain is verified. This typically takes 1-5 minutes.
+
+Your app will be accessible via HTTPS:
+- `https://example.com` ✓
+- `https://app.example.com` ✓
+
+<Tip>
+  We automatically redirect HTTP to HTTPS for all custom domains.
+</Tip>
+
+## Multiple domains
+
+You can add multiple domains to a single project:
+
+- `example.com`
+- `www.example.com`
+- `app.example.com`
+
+Set one as the **primary domain** — other domains will redirect to it.
+
+## Troubleshooting
+
+### DNS not propagating
+
+DNS changes can take up to 48 hours to propagate globally. You can check propagation at [dnschecker.org](https://dnschecker.org).
+
+### SSL certificate pending
+
+If your certificate is stuck in "pending":
+1. Verify DNS records are correct
+2. Wait a few minutes and refresh
+3. Contact support if the issue persists

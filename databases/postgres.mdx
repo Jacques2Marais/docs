@@ -1,0 +1,86 @@
+---
+title: "Managed PostgreSQL"
+description: "Provision and connect to your database"
+---
+
+## Overview
+
+Zanode provides managed PostgreSQL databases running in the same South African data center as your application. Zero latency between your app and database.
+
+## Create a database
+
+<Steps>
+  <Step title="Go to your project">
+    Navigate to your project in the dashboard.
+  </Step>
+  <Step title="Click Databases">
+    Select the **Databases** tab.
+  </Step>
+  <Step title="Create database">
+    Click **Create Database** and choose a name.
+  </Step>
+</Steps>
+
+Your database is ready within seconds.
+
+## Connection string
+
+Once created, your connection string is automatically added to your environment variables:
+
+```bash
+DATABASE_URL=postgres://user:password@host:5432/database
+```
+
+<Info>
+  The connection string is encrypted at rest and only available to your application.
+</Info>
+
+## Connecting from your app
+
+### Node.js (pg)
+
+```javascript
+import pg from 'pg';
+
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL
+});
+
+const result = await pool.query('SELECT NOW()');
+```
+
+### Prisma
+
+```javascript
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+### Drizzle
+
+```javascript
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+
+const client = postgres(process.env.DATABASE_URL!);
+export const db = drizzle(client);
+```
+
+## Backups
+
+Databases are backed up automatically. Contact support to restore from a backup.
+
+<Warning>
+  Restoring a backup replaces all current data. This cannot be undone.
+</Warning>
+
+## Limits
+
+| Plan | Storage | Connections |
+|------|---------|-------------|
+| Free | 1 GB | 10 |
+| Pro | 10 GB | 50 |
+| Team | 50 GB | 100 |

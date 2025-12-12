@@ -1,0 +1,78 @@
+---
+title: "Build settings"
+description: "Configure how your app is built and deployed"
+---
+
+## Overview
+
+Zanode auto-detects build settings for most frameworks, but you can customize them in your project's **Settings** tab under **Build Configuration**.
+
+## Build command
+
+The command used to build your app:
+
+```bash
+npm run build
+```
+
+**Common examples:**
+
+| Framework | Build command |
+|-----------|---------------|
+| Next.js | `npm run build` |
+| Vite | `npm run build` |
+| Astro | `npm run build` |
+| Create React App | `npm run build` |
+
+## Start command
+
+The command used to start your app after building:
+
+```bash
+npm start
+```
+
+**Common examples:**
+
+| Framework | Start command |
+|-----------|---------------|
+| Next.js | `npm start` |
+| Express | `node server.js` |
+| Fastify | `npm start` |
+
+<Note>
+  For static sites, no start command is needed — files are served directly.
+</Note>
+
+## Output directory
+
+Where your build artifacts are located:
+
+| Framework | Output directory |
+|-----------|------------------|
+| Next.js | `.next` |
+| Vite | `dist` |
+| Astro | `dist` |
+| Create React App | `build` |
+
+## Node.js version
+
+Zanode uses Node.js 20 by default. You can specify a version in your `package.json`:
+
+```json
+{
+  "engines": {
+    "node": "20.x"
+  }
+}
+```
+
+## Build environment variables
+
+Environment variables are available during the build process. Common use cases:
+
+- API keys for CMS or backends
+- Build-time configuration
+- Feature flags
+
+See [Environment variables](/environment-variables) for more details.
